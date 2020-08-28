@@ -8,10 +8,10 @@ using namespace std;
 int solution(vector<int> scoville, int K) {
 	int answer = 0;
 	int min1, min2, mix;
-	priority_queue<int,vector<int>,greater<int>> pq; //Â¿Ã€Â¸Â§Ã‚Ã·Â¼Ã¸ ÃÂ¤Â·Ã„
+	priority_queue<int,vector<int>,greater<int>> pq; //¿À¸§Â÷¼ø Á¤·Ä
 	for (int i = 0; i < scoville.size(); i++)
 		pq.push(scoville[i]);
-	while (pq.top()<K) {
+	while (pq.top()<K&&pq.size()>1) {
 		min1 = pq.top();
 		pq.pop();
 
@@ -22,6 +22,10 @@ int solution(vector<int> scoville, int K) {
 		pq.push(mix);
 		answer++;
 	}
+
+	if (pq.top() < K)
+		return -1;
+
 	return answer;
 }
 
